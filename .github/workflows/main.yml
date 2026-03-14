@@ -1,0 +1,38 @@
+name: Full Reset and Unzip
+on:
+  workflow_dispatch:
+    inputs:
+      zip_name:
+        description: 'Name of the zip file already in the repo'
+        required: true
+        default: 'archive.zip'
+
+jobs:
+  clean-and-extract:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: [actions/checkout@v4](https://github.com/actions/checkout)
+
+      - name: Delete everything except .git, .github, and the ZIP
+        run: |
+          # Finds and deletes all files/folders except essential Git and the ZIP file
+          find . -maxdepth 1 ! -name '.git' ! -name '.github' ! -name '${{ github.event.inputs.zip_name }}' ! -name '.' -exec rm -rf {} +
+
+      - name: Commit repo cleanup
+        uses: [stefanzweifel/git-auto-commit-action@v5](https://github.com)
+        with:
+          commit_message: "Cleaned repository for fresh extraction"
+
+      - name: Extract ZIP file
+        run: |
+          unzip -o "${{ github.event.inputs.zip_name }}"
+          # Removes the zip file so it doesn't stay in the final repo state
+          rm "${{ github.event.inputs.zip_name }}"
+
+      - name: Commit and Push extracted contents
+        uses: [stefanzweifel/git-auto-commit-action@v5](https://github.com)
+        with:
+          commit_message: "Extracted contents of ${{ github.event.inputs.zip_name }}"
