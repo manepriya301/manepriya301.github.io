@@ -1,0 +1,42 @@
+{
+    "name": "Just Marathi — Learn Marathi for Kids",
+    "short_name": "Just Marathi",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#065F46",
+    "theme_color": "#10B981",
+    "description": "The #1 Marathi learning app for kids and families.",
+    "orientation": "portrait-primary",
+    "prefer_related_applications": true,
+    "related_applications": [
+        {
+            "platform": "itunes",
+            "url": "https://apps.apple.com/us/app/just-marathi/id6749487945",
+            "id": "6749487945"
+        }
+    ],
+    "icons": [
+        {
+            "src": "icons/Icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-maskable-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "icons/Icon-maskable-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ]
+}
